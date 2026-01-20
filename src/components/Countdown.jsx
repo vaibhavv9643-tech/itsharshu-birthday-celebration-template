@@ -9,6 +9,17 @@ function Countdown({ onBirthdayReached, birthdayReached }) {
     seconds: null,
   });
 
+  // 🎉 Confetti trigger
+  const fireConfetti = () => {
+    if (window.confetti) {
+      window.confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 },
+      });
+    }
+  };
+
   useEffect(() => {
     // If birthday already reached, don't start the countdown
     if (birthdayReached) {
@@ -21,17 +32,8 @@ function Countdown({ onBirthdayReached, birthdayReached }) {
 
     const targetDate = new Date("2025-12-18T00:00:00");
 
-    // 📝 HOW TO USE:
-    // Replace the date above with your actual birthday
-    // Format: 'YYYY-MM-DD HH:MM:SS'
-    //
-    // Examples:
-    // - January 15, 2026 at midnight: '2026-01-15T00:00:00'
-    // - June 10, 2025 at 3:30 PM:    '2025-06-10T15:30:00'
-    // - December 25, 2025 at noon:   '2025-12-25T12:00:00'
-    //
-    // ⏰ Time format is 24-hour (00:00 = midnight, 12:00 = noon, 23:59 = 11:59 PM)
-    // ═══════════════════════════════════════════════════════════════
+    // ⏰ FORMAT: 'YYYY-MM-DDTHH:MM:SS'
+    // Example: '2026-01-15T00:00:00'
 
     const updateCountdown = () => {
       const now = new Date();
@@ -43,8 +45,14 @@ function Countdown({ onBirthdayReached, birthdayReached }) {
 
       setTime({ hours, minutes, seconds });
 
+      // 🌙 Midnight Magic Mode
+      if (hours === 0 && minutes === 0 && seconds === 0) {
+        document.body.classList.add("celebration-mode");
+      }
+
       if (diff <= 0 && !birthdayReached) {
         onBirthdayReached();
+        fireConfetti();
       }
     };
 
@@ -62,7 +70,7 @@ function Countdown({ onBirthdayReached, birthdayReached }) {
     const shouldFlip = prevValue !== null && prevValue !== value;
 
     return (
-      <div className="digit">
+      <div className="digit time-box">
         <div className={`card ${shouldFlip ? "flip" : ""}`}>
           <div className="text">{String(value).padStart(2, "0")}</div>
         </div>
@@ -71,20 +79,35 @@ function Countdown({ onBirthdayReached, birthdayReached }) {
     );
   };
 
+  // 🎉 Birthday Reached Screen
   if (birthdayReached) {
     return (
       <section className="countdown">
+        <h1>
+          🎂 Happy Birthday{" "}
+          <span className="name-highlight">Divyanshi</span> 🎂
+        </h1>
+
         <div className="flip-timer">
           <span className="birthday-celebration">
-            🎉 It's Your Birthday! 🎉
+            🎉 Wishing you a day filled with love, laughter & magic 🎉
           </span>
         </div>
+
+        <button className="celebrate-btn" onClick={fireConfetti}>
+          🎊 Celebrate Again
+        </button>
       </section>
     );
   }
 
   return (
     <section className="countdown">
+      <h1>
+        Counting down to{" "}
+        <span className="name-highlight">Divyanshi’s Birthday</span> 🎂
+      </h1>
+
       <div className="flip-timer">
         <Digit value={time.hours} label="Hours" prevValue={prevTime.hours} />
         <Digit
@@ -99,15 +122,18 @@ function Countdown({ onBirthdayReached, birthdayReached }) {
         />
       </div>
 
-      {/* ⚠️ TEST BUTTON - delete it from here⚠️ */}
+      <button className="celebrate-btn" onClick={fireConfetti}>
+        🎉 Let's Celebrate
+      </button>
+
+      {/* ⚠️ TEST BUTTON - remove before final deploy ⚠️ */}
       <button
         className="test-button"
         onClick={onBirthdayReached}
         title="Skip countdown and see celebration"
       >
-        🎉 Test Celebration
+        🧪 Test Celebration
       </button>
-      {/* ⚠️ END TEST BUTTON - DELETE UP TO HERE ⚠️ */}
     </section>
   );
 }
