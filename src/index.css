@@ -1,128 +1,124 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+/* ============================= */
+/* 🎀 Aesthetic Birthday Screen */
+/* ============================= */
 
-  /* Premium Animated Gradient Background */
-  background: linear-gradient(-45deg, #ffd1dc, #ffe4f0, #ffb6c1, #ffc1e3);
-  background-size: 400% 400%;
-  animation: bgMove 10s ease infinite, fadeIn 800ms ease-out forwards;
-
-  text-align: center;
-  color: #333;
-  scroll-behavior: smooth;
+.birthday-screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  height: 100vh;
-  height: 100dvh; /* Dynamic viewport height for mobile */
-  width: 100vw;
-  width: 100dvw;
-  position: fixed;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  touch-action: pan-y;
 }
 
-/* Root Layout */
-html {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 100vh;
-  height: 100dvh;
-  width: 100vw;
-  width: 100dvw;
+/* Soft floating light orbs */
+.birthday-screen::before,
+.birthday-screen::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.4), transparent 70%);
+  animation: floatLights 18s infinite ease-in-out;
+  filter: blur(40px);
 }
 
-/* Root App Container */
-#root {
-  width: 100vw;
-  width: 100dvw;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
+.birthday-screen::after {
+  animation-delay: 6s;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.3), transparent 70%);
 }
 
-/* Global Box Sizing */
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Background Animation */
-@keyframes bgMove {
+@keyframes floatLights {
   0% {
-    background-position: 0% 50%;
+    transform: translate(-20%, -20%);
   }
   50% {
-    background-position: 100% 50%;
+    transform: translate(60%, 40%);
   }
   100% {
-    background-position: 0% 50%;
+    transform: translate(-20%, -20%);
   }
 }
 
-/* Fade In Animation */
-@keyframes fadeIn {
+/* Content Card */
+.birthday-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  border-radius: 32px;
+  padding: 60px 80px;
+  box-shadow: 0 40px 100px rgba(255, 105, 180, 0.25);
+  max-width: 700px;
+  z-index: 2;
+}
+
+/* Hero Name Glow */
+.hero-name {
+  color: #ff3f8e;
+  text-shadow: 0 0 20px rgba(255, 63, 142, 0.6);
+  animation: namePulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes namePulse {
   from {
-    opacity: 0;
+    text-shadow: 0 0 10px rgba(255, 63, 142, 0.4);
   }
   to {
-    opacity: 1;
+    text-shadow:_toggleUser:
+    0 0 30px rgba(255, 63, 142, 0.8);
   }
 }
 
-/* Floating Gift Box Style for Countdown */
-.time-box {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 20px 25px;
-  box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
-  animation: float 3s ease-in-out infinite;
+/* Soft Subtitle */
+.soft-text {
+  color: #666;
+  font-style: italic;
+  opacity: 0.9;
 }
 
-/* Floating Effect */
-@keyframes float {
+/* Luxury Button */
+.luxury-btn {
+  background: linear-gradient(135deg, #ff4f8b, #ff85b3);
+  color: white;
+  border: none;
+  padding: 18px 50px;
+  font-size: 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(255, 79, 139, 0.4);
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
   0% {
-    transform: translateY(0px);
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-8px);
+    transform: scale(1.04);
   }
   100% {
-    transform: translateY(0px);
+    transform: scale(1);
   }
 }
 
-/* Celebration Button */
-.celebrate-btn {
-  transition: all 0.3s ease;
+.luxury-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transition: 0.6s;
 }
 
-.celebrate-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
-}
-
-/* Glowing Name Highlight */
-.name-highlight {
-  background: linear-gradient(45deg, #ff5fa2, #ff9acb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 5px #ff9acb;
-  }
-  to {
-    text-shadow: 0 0 20px #ff5fa2;
-  }
-}
-
-/* Midnight Celebration Mode */
-.celebration-mode {
-  background: radial-gradient(circle, #2a0033, #ff1493);
+.luxury-btn:hover::after {
+  left: 100%;
 }
