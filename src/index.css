@@ -1,8 +1,13 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #ffd1dc 0%, #ffe6ee 100%);
+  font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Premium Animated Gradient Background */
+  background: linear-gradient(-45deg, #ffd1dc, #ffe4f0, #ffb6c1, #ffc1e3);
+  background-size: 400% 400%;
+  animation: bgMove 10s ease infinite, fadeIn 800ms ease-out forwards;
+
   text-align: center;
   color: #333;
   scroll-behavior: smooth;
@@ -12,12 +17,12 @@ body {
   width: 100vw;
   width: 100dvw;
   position: fixed;
-  animation: fadeIn 800ms ease-out forwards;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   touch-action: pan-y;
 }
 
+/* Root Layout */
 html {
   margin: 0;
   padding: 0;
@@ -28,6 +33,37 @@ html {
   width: 100dvw;
 }
 
+/* Root App Container */
+#root {
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Global Box Sizing */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Background Animation */
+@keyframes bgMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Fade In Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -37,17 +73,56 @@ html {
   }
 }
 
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+/* Floating Gift Box Style for Countdown */
+.time-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px 25px;
+  box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
+  animation: float 3s ease-in-out infinite;
 }
 
-#root {
-  width: 100vw;
-  width: 100dvw;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
+/* Floating Effect */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Celebration Button */
+.celebrate-btn {
+  transition: all 0.3s ease;
+}
+
+.celebrate-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+}
+
+/* Glowing Name Highlight */
+.name-highlight {
+  background: linear-gradient(45deg, #ff5fa2, #ff9acb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #ff9acb;
+  }
+  to {
+    text-shadow: 0 0 20px #ff5fa2;
+  }
+}
+
+/* Midnight Celebration Mode */
+.celebration-mode {
+  background: radial-gradient(circle, #2a0033, #ff1493);
 }
