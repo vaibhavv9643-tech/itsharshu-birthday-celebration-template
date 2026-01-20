@@ -1,3 +1,131 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Premium Animated Gradient Background */
+  background: linear-gradient(-45deg, #ffd1dc, #ffe4f0, #ffb6c1, #ffc1e3);
+  background-size: 400% 400%;
+  animation: bgMove 10s ease infinite, fadeIn 800ms ease-out forwards;
+
+  text-align: center;
+  color: #333;
+  scroll-behavior: smooth;
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+  width: 100vw;
+  width: 100dvw;
+  position: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: pan-y;
+}
+
+/* Root Layout */
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+}
+
+/* Root App Container */
+#root {
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Global Box Sizing */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Background Animation */
+@keyframes bgMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Floating Gift Box Style for Countdown */
+.time-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px 25px;
+  box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Floating Effect */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Celebration Button */
+.celebrate-btn {
+  transition: all 0.3s ease;
+}
+
+.celebrate-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+}
+
+/* Glowing Name Highlight */
+.name-highlight {
+  background: linear-gradient(45deg, #ff5fa2, #ff9acb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #ff9acb;
+  }
+  to {
+    text-shadow: 0 0 20px #ff5fa2;
+  }
+}
+
+/* Midnight Celebration Mode */
+.celebration-mode {
+  background: radial-gradient(circle, #2a0033, #ff1493);
+}
 /* ============================= */
 /* 🎀 Aesthetic Birthday Screen */
 /* ============================= */
@@ -121,4 +249,133 @@
 
 .luxury-btn:hover::after {
   left: 100%;
+}
+/* ============================= */
+/* 🌙 Reveal Slide Aesthetic */
+/* ============================= */
+
+.reveal-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft ambient glow behind card */
+.reveal-screen::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.35), transparent 70%);
+  filter: blur(80px);
+  animation: glowFloat 12s infinite ease-in-out;
+}
+
+@keyframes glowFloat {
+  0% { transform: translate(-30%, -30%); }
+  50% { transform: translate(30%, 20%); }
+  100% { transform: translate(-30%, -30%); }
+}
+
+/* Glass Card */
+.reveal-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(25px);
+  border-radius: 36px;
+  padding: 70px 90px;
+  box-shadow: 0 50px 120px rgba(255, 105, 180, 0.3);
+  text-align: center;
+  z-index: 2;
+  animation: cardFloat 4s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Reveal Title */
+.reveal-title {
+  font-size: 36px;
+  color: #333;
+  margin-top: 20px;
+  animation: fadeSlide 1.5s ease forwards;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Soft Caption */
+.reveal-caption {
+  margin-top: 10px;
+  color: #777;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Portal Button */
+.portal-btn {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #ff4f8b, #ff85b3);
+  color: white;
+  border: none;
+  padding: 18px 55px;
+  border-radius: 999px;
+  font-size: 18px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(255, 79, 139, 0.5);
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+.portal-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  transition: 0.7s;
+}
+
+.portal-btn:hover::after {
+  left: 100%;
+}
+
+/* Progress Dots */
+.progress-dots {
+  margin-top: 30px;
+}
+
+.progress-dots span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: 0 6px;
+}
+
+.progress-dots .active {
+  background: #ff4f8b;
+  box-shadow: 0 0 15px rgba(255, 79, 139, 0.8);
 }
